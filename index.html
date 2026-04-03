@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dom Humphreys — Product Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --text-primary: #111110;
+      --text-secondary: #5f5e5a;
+      --text-tertiary: #888780;
+      --border: rgba(0,0,0,0.1);
+      --border-strong: rgba(0,0,0,0.18);
+      --bg: #fafaf8;
+      --bg-secondary: #f1efea;
+      --accent: #111110;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2.5rem;
+    }
+
+    .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    nav ul a {
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover { color: var(--text-primary); }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 0 2.5rem; }
+
+    /* Hero */
+    .hero {
+      padding: 6rem 2.5rem 5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(42px, 6vw, 64px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.75rem;
+      font-weight: 400;
+    }
+
+    .hero-desc {
+      font-size: 17px;
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin-bottom: 2rem;
+      line-height: 1.75;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 2.5rem;
+    }
+
+    .tag {
+      font-size: 12px;
+      padding: 5px 13px;
+      border-radius: 100px;
+      border: 0.5px solid var(--border-strong);
+      color: var(--text-secondary);
+      letter-spacing: 0.01em;
+    }
+
+    .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-block;
+      font-size: 13px;
+      font-family: 'DM Sans', sans-serif;
+      padding: 10px 22px;
+      border: 0.5px solid var(--border-strong);
+      border-radius: 6px;
+      color: var(--text-primary);
+      text-decoration: none;
+      cursor: pointer;
+      background: transparent;
+      letter-spacing: 0.01em;
+      transition: background 0.15s;
+    }
+
+    .btn:hover { background: var(--bg-secondary); }
+
+    .btn-primary {
+      background: var(--text-primary);
+      color: var(--bg);
+      border-color: var(--text-primary);
+    }
+
+    .btn-primary:hover { background: #333; }
+
+    /* Sections */
+    .section { padding: 4.5rem 2.5rem; max-width: 900px; margin: 0 auto; }
+
+    .divider { border: none; border-top: 0.5px solid var(--border); }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 2.5rem;
+    }
+
+    /* Jobs */
+    .job {
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .job:last-child { border-bottom: none; }
+
+    .job-company {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 3px;
+    }
+
+    .job-period {
+      font-size: 12px;
+      color: var(--text-tertiary);
+    }
+
+    .job-title {
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .job-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      line-height: 1.7;
+    }
+
+    .job-list {
+      padding-left: 1rem;
+      margin-bottom: 12px;
+    }
+
+    .job-list li {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 4px;
+    }
+
+    .metrics {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .metric {
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      padding: 10px 14px;
+      min-width: 90px;
+    }
+
+    .metric-val {
+      font-size: 17px;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .metric-lbl {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      margin-top: 3px;
+      line-height: 1.4;
+    }
+
+    /* Expertise */
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .expertise-card {
+      background: var(--bg-secondary);
+      border-radius: 10px;
+      padding: 1.25rem;
+    }
+
+    .expertise-card h3 {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .expertise-card p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Blog */
+    .blog-placeholder {
+      border: 0.5px solid var(--border);
+      border-radius: 10px;
+      padding: 3.5rem 2rem;
+      text-align: center;
+    }
+
+    .blog-placeholder h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+
+    .blog-placeholder p {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    /* Contact */
+    .contact-intro {
+      font-size: 17px;
+      color: var(--text-secondary);
+      max-width: 480px;
+      margin-bottom: 1.75rem;
+      line-height: 1.75;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .contact-links a {
+      font-size: 14px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-links a:hover { color: var(--text-primary); }
+
+    footer {
+      border-top: 0.5px solid var(--border);
+      padding: 2rem 2.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p {
+      font-size: 12px;
+      color: var(--text-tertiary);
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.25rem; }
+      nav ul { gap: 1.25rem; }
+      .hero { padding: 4rem 1.25rem 3rem; }
+      .section { padding: 3rem 1.25rem; }
+      .job { grid-template-columns: 1fr; gap: 0.5rem; }
+      footer { padding: 1.5rem 1.25rem; flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="logo">Dom Humphreys</span>
+  <ul>
+    <li><a href="#highlights">Highlights</a></li>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <p class="hero-eyebrow">Product Manager · London, UK</p>
+  <h1>Payments, platforms,<br>and products that scale.</h1>
+  <p class="hero-desc">Over a decade building and scaling platforms — from early-stage products to systems processing billions in transaction value.</p>
+  <div class="tags">
+    <span class="tag">Payment Orchestration</span>
+    <span class="tag">Marketplace Payments</span>
+    <span class="tag">PSP Integrations</span>
+    <span class="tag">Financial Ledgers</span>
+    <span class="tag">AI-first Development</span>
+  </div>
+  <div class="btn-row">
+    <a class="btn btn-primary" href="#contact">Get in touch</a>
+    <a class="btn" href="https://github.com/domhumphreys-oss" target="_blank">GitHub</a>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- Highlights -->
+<div class="section" id="highlights">
+  <p class="section-label">Highlights</p>
+
+  <div class="job">
+    <div>
+      <div class="job-company">GodMode</div>
+      <div class="job-period">Oct 2023 – Dec 2024</div>
+    </div>
+    <div>
+      <div class="job-title">Product Advisor</div>
+      <p class="job-desc">AI-powered sales outreach platform finding and converting leads.</p>
+      <div class="metrics">
+        <div class="metric"><div class="metric-val">22%→75%</div><div class="metric-lbl">User activation rate</div></div>
+        <div class="metric"><div class="metric-val">10</div><div class="metric-lbl">First retained customers incl. Google</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="job">
+    <div>
+      <div class="job-company">Zera</div>
+      <div class="job-period">Dec 2024 – May 2025</div>
+    </div>
+    <div>
+      <div class="job-title">Product Advisor</div>
+      <p class="job-desc">Generative AI coaching app using voice and text models.</p>
+      <div class="metrics">
+        <div class="metric"><div class="metric-val">4x</div><div class="metric-lbl">Experimentation velocity</div></div>
+        <div class="metric"><div class="metric-val">+38.9%</div><div class="metric-lbl">D1 retention</div></div>
+        <div class="metric"><div class="metric-val">+120%</div><div class="metric-lbl">D7 retention</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="job">
+    <div>
+      <div class="job-company">Surf Labs</div>
+      <div class="job-period">Apr 2023 – Dec 2024</div>
+    </div>
+    <div>
+      <div class="job-title">Head of Product</div>
+      <p class="job-desc">Gaming platform using crypto on-ramp and off-ramp.</p>
+      <div class="metrics">
+        <div class="metric"><div class="metric-val">£1M</div><div class="metric-lbl">Gross revenue, year 1</div></div>
+        <div class="metric"><div class="metric-val">38K</div><div class="metric-lbl">Daily active users</div></div>
+        <div class="metric"><div class="metric-val">33%</div><div class="metric-lbl">User retention</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="job">
+    <div>
+      <div class="job-company">Coda Platform</div>
+      <div class="job-period">Oct 2020 – Apr 2023</div>
+    </div>
+    <div>
+      <div class="job-title">Head of Product</div>
+      <p class="job-desc">Gaming platform enabling developers to build, publish, and monetise games. Led product across 8 squads.</p>
+      <div class="metrics">
+        <div class="metric"><div class="metric-val">£30.7M</div><div class="metric-lbl">Total gross revenue</div></div>
+        <div class="metric"><div class="metric-val">141%</div><div class="metric-lbl">YoY growth</div></div>
+        <div class="metric"><div class="metric-val">7M+</div><div class="metric-lbl">Monthly active users</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="job">
+    <div>
+      <div class="job-company">Snap Travel Tech</div>
+      <div class="job-period">Oct 2018 – Oct 2020</div>
+    </div>
+    <div>
+      <div class="job-title">Co-Founder / Head of Product</div>
+      <p class="job-desc">Multi-sided marketplace with integrated payment rails and revenue-share models.</p>
+      <div class="metrics">
+        <div class="metric"><div class="metric-val">2x</div><div class="metric-lbl">Monthly retained revenue</div></div>
+        <div class="metric"><div class="metric-val">+250%</div><div class="metric-lbl">Inventory growth</div></div>
+        <div class="metric"><div class="metric-val">+33%</div><div class="metric-lbl">Conversion MoM</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="job">
+    <div>
+      <div class="job-company">Judo Pay</div>
+      <div class="job-period">Mar 2015 – Feb 2018</div>
+    </div>
+    <div>
+      <div class="job-title">Senior Product Manager</div>
+      <p class="job-desc">Mobile payments platform scaled from startup to international expansion.</p>
+      <div class="metrics">
+        <div class="metric"><div class="metric-val">500%</div><div class="metric-lbl">MRR growth</div></div>
+        <div class="metric"><div class="metric-val">2M</div><div class="metric-lbl">Transactions scaled to</div></div>
+        <div class="metric"><div class="metric-val">0.2%</div><div class="metric-lbl">Platform fraud rate</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="job">
+    <div>
+      <div class="job-company">Procserve</div>
+      <div class="job-period">Jan 2012 – Jul 2015</div>
+    </div>
+    <div>
+      <div class="job-title">Product Manager</div>
+      <p class="job-desc">Procurement and marketplace provider.</p>
+      <div class="metrics">
+        <div class="metric"><div class="metric-val">Billions</div><div class="metric-lbl">Transaction value scaled to</div></div>
+        <div class="metric"><div class="metric-val">Acquired</div><div class="metric-lbl">By Basware via B2B integrations</div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<hr class="divider">
+
+<!-- Expertise -->
+<div class="section" id="expertise">
+  <p class="section-label">Expertise</p>
+  <div class="expertise-grid">
+    <div class="expertise-card">
+      <h3>Payment Orchestration</h3>
+      <p>Intelligent routing across PSPs to optimise cost and approval rates at scale.</p>
+    </div>
+    <div class="expertise-card">
+      <h3>Marketplace Payments</h3>
+      <p>Multi-party flows including split payments, escrow, and automated payouts.</p>
+    </div>
+    <div class="expertise-card">
+      <h3>Financial Infrastructure</h3>
+      <p>Ledger systems, state transition engines, and automated reconciliation.</p>
+    </div>
+    <div class="expertise-card">
+      <h3>AI-first Product</h3>
+      <p>Embedding AI into discovery, delivery, and platform development processes.</p>
+    </div>
+    <div class="expertise-card">
+      <h3>0 to 1 Builds</h3>
+      <p>Taking products from idea to market across payments, gaming, and marketplaces.</p>
+    </div>
+    <div class="expertise-card">
+      <h3>Growth & Monetisation</h3>
+      <p>ML-powered optimisation of pricing, fraud, and monetisation systems.</p>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- Blog -->
+<div class="section" id="blog">
+  <p class="section-label">Blog</p>
+  <div class="blog-placeholder">
+    <h3>Writing coming soon</h3>
+    <p>Thoughts on payments, product, and building with AI.</p>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- Contact -->
+<div class="section" id="contact">
+  <p class="section-label">Contact</p>
+  <p class="contact-intro">Open to advisory, consulting, and senior product roles in payments and platform businesses.</p>
+  <div class="contact-links">
+    <a href="mailto:your@email.com">your@email.com</a>
+    <a href="https://github.com/domhumphreys-oss" target="_blank">GitHub</a>
+  </div>
+</div>
+
+<hr class="divider">
+
+<footer>
+  <p>Dom Humphreys · London, UK</p>
+  <p>© 2026</p>
+</footer>
+
+</body>
+</html>
